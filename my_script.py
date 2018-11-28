@@ -1,7 +1,9 @@
 import auto_modelling
-my_data = auto_modelling.my_reader('DataSet_Lakas.csv')
+my_data = auto_modelling.my_reader('DataSet_Hitelbiralat_Prepared.csv', separ=';')
+#my_data['TARGET_LABEL_GOOD'] = 1 - my_data['TARGET_LABEL_BAD']
+#target = 'Sex_Female'
 target = auto_modelling.choose_target(my_data)
-#target = 'price_created_at'
+#target = 'active_days'
 regression, classification = auto_modelling.guess_goal(my_data, target)
 input_vars = auto_modelling.to_pure_numbers(my_data)
 my_data = auto_modelling.missing_value_handle(my_data)
