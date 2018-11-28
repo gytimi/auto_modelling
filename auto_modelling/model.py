@@ -80,13 +80,13 @@ def my_train_test_split(mydata):
 
 def modelling(my_data, regression, classification, train_df, test_df, input_vars, target):
     n_neighbors = 15
+    x_train = train_df[input_vars]
+    y_train = train_df[target]
+    x_test = test_df[input_vars]
+    y_test = test_df[target]
     if regression:
         # LinearRegression
         model1 = LinearRegression(fit_intercept=True)
-        x_train = train_df[input_vars]
-        y_train = train_df[target]
-        x_test = test_df[input_vars]
-        y_test = test_df[target]
         model1.fit(x_train, y_train)
         test_df['pred1'] = model1.predict(x_test)
         
