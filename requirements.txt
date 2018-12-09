@@ -1,0 +1,10 @@
+Required:
+
+ * sklearn package
+ * math package
+ * numpy package
+ * pandas package
+
+Install:
+
+ pip install .
