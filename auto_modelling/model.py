@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from sklearn import neighbors
 from sklearn import tree
 from sklearn.model_selection import train_test_split
@@ -115,8 +114,9 @@ def modelling(my_data, regression, classification, train_df, test_df, input_vars
         model3.fit(x_train, y_train)
         test_df['pred3'] = model3.predict(x_test)
     return test_df
-		
-def my_evaulation(test_df, target, regression, classification):
+
+
+def my_evaluation(test_df, target, regression, classification):
     y_true = test_df[target]
     l=[]
     if classification:
@@ -124,7 +124,7 @@ def my_evaulation(test_df, target, regression, classification):
         m = ['Evaluation', 'Linear Regression', 'KNN', 'Decision tree' ]
     if regression:
         c = ['Mean Absolute Error', 'Mean Squarred Error', 'R2 Score', 'Explained Variance score' ]
-        m= ['Evaluation', 'Logistic Regression', 'KNN', 'Decision tree']
+        m = ['Evaluation', 'Logistic Regression', 'KNN', 'Decision tree']
     l.append(c)
     for i in range(1,4):
         e = []
@@ -151,4 +151,32 @@ def my_evaulation(test_df, target, regression, classification):
     df_l = df_l.transpose()
     df_l.columns = m
     return(df_l)
-	
+
+#TODO: maskepp kell eltuntetni
+pd.set_option('mode.chained_assignment', None)
+def my_evaluation_pipe(y_pred, y_true, regression, classification):
+    l=[]
+    e = []
+    c = []
+    if classification:
+        c = ['Accuracy', 'AUC', 'RMSE']
+        # Accuracy
+        e.append(accuracy_score(y_true, y_pred))
+        # AUC
+        e.append(roc_auc_score(y_true, y_pred))
+        # RMSE
+        e.append(sqrt(mean_squared_error(y_true, y_pred)))
+    if regression:
+        c = ['Mean Absolute Error', 'Mean Squarred Error', 'R2 Score', 'Explained Variance score']
+        # TODO: nem tunnek jonak az ertekek
+        # Mean Absolute Error
+        e.append(mean_absolute_error(y_true, y_pred))
+        # Mean Squarred Error
+        e.append(mean_squared_error(y_true, y_pred))
+        # R2 Score
+        e.append(r2_score(y_true, y_pred))
+        # Explained Variance score
+        e.append(explained_variance_score(y_true, y_pred))
+    l.append(e)
+    df_l = pd.DataFrame(l, columns = c)
+    return df_l
