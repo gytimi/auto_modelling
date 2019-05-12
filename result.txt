@@ -1,0 +1,15 @@
+filename: DataSet_Hitelbiralat_Prepared.csv
+target: PERSONAL_NET_INCOME
+missing_value_handle: mean
+Regression
+
+Evaluation:
+LinearRegression
+   Mean Absolute Error  Mean Squarred Error  R2 Score  Explained Variance score
+0         7.062621e-13         1.620856e-24       1.0                       1.0
+KNeighborsRegressor
+   Mean Absolute Error  Mean Squarred Error  R2 Score  Explained Variance score
+0             5.548323           726.954679  0.998513                  0.998515
+DecisionTreeRegressor
+   Mean Absolute Error  Mean Squarred Error  R2 Score  Explained Variance score
+0             0.406759            77.385305  0.999842                  0.999842

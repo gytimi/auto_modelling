@@ -1,0 +1,3 @@
+filename = 'DataSet_Hitelbiralat_Prepared.csv'
+target = 'PERSONAL_NET_INCOME'
+missing_value_handle = 'mean'
